@@ -11,3 +11,11 @@ show_menu()
 choice = int(input("Please Enter your choice "))
 print(f"You chose : {choice}")
 
+if (choice == 1):
+    print("Add Topic has been Selected")
+elif (choice == 2):
+    print("List Topic has been Selected")
+elif (choice == 3):
+    print("You have exited the Menu")
+else:
+    print("Invalid choice")
