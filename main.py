@@ -8,19 +8,24 @@ def show_menu():
 def add_topic(topics_dict):
     topic_name = input("Enter the topic name: ")
     description = input("Enter the topic description: ")
-    topics_dict[topic_name] = {
+    details =  {
         "description": description,
         "status": "Learning",
         "notes": []
     }
+    topics_dict[topic_name] = details
     # topics_dict.update({topic_name: description})
     print("Topic added successfully!")
 def list_topics(topics_dict):
     if not topics_dict:
         print("No topics available.")
     else:
-        for topic, description in topics_dict.items():
-            print(f"Topic: {topic}, Description: {description}")
+        for topic, details in topics_dict.items():
+            print(f"Topic: {topic}")
+            print(f"Description: {details['description']}")
+            print(f"Status: {details['status']}")
+            print()
+
 def search_topic(topics_dict):
     search_key = input("Please enter the name of the topic: ")
     if search_key in topics_dict:
