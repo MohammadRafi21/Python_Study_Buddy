@@ -3,7 +3,8 @@ def show_menu():
     print("1. Add Topic")
     print("2. List Topics")
     print("3. Search Topics")
-    print("4. Exit")
+    print("4. Add Notes")
+    print("5. Exit")
 
 def add_topic(topics_dict):
     topic_name = input("Enter the topic name: ")
@@ -29,7 +30,19 @@ def list_topics(topics_dict):
 def search_topic(topics_dict):
     search_key = input("Please enter the name of the topic: ")
     if search_key in topics_dict:
-        print(topics_dict[search_key])
+        details = topics_dict[search_key]
+        print(f"Topic: {search_key}")
+        print(f"Description: {details['description']}")
+        print(f"Status: {details['status']}")
+    else:
+        print("Topic not found")
+
+def add_notes(topics_dict):
+    topic_name = input("Please enter the name of the topic")
+    if topic_name in topics_dict:
+        notes = input("Please Add your notes: ")
+        topics_dict[topic_name]["notes"].append(notes)
+        print("Notes has been added successfully!")
     else:
         print("Topic not found")
 
@@ -41,7 +54,7 @@ while True:
 
     show_menu()
 
-    choice = int(input("Please Enter your choice "))
+    choice = int(input("Please Enter your choice in number: "))
     print(f"You chose : {choice}")
 
 
@@ -56,6 +69,10 @@ while True:
         search_topic(topics)
         # Implement search functionality here
     elif (choice == 4):
+        print("Add Notes has been Selected")
+        add_notes(topics)
+        # Implement add notes functionality here
+    elif (choice == 5):
         print("You have exited the Menu")
         break
     else:
