@@ -4,7 +4,8 @@ def show_menu():
     print("2. List Topics")
     print("3. Search Topics")
     print("4. Add Notes")
-    print("5. Exit")
+    print("5. Update Status")
+    print("6. Exit")
 
 def add_topic(topics_dict):
     topic_name = input("Enter the topic name: ")
@@ -34,15 +35,40 @@ def search_topic(topics_dict):
         print(f"Topic: {search_key}")
         print(f"Description: {details['description']}")
         print(f"Status: {details['status']}")
+        if not details['notes']:
+            print("No notes available for this topic.")
+        else:
+            for i in range(len(details['notes'])):
+                print(f"Note {i+1}: {details['notes'][i]}")
     else:
         print("Topic not found")
 
 def add_notes(topics_dict):
-    topic_name = input("Please enter the name of the topic")
+    topic_name = input("Please enter the name of the topic: ")
     if topic_name in topics_dict:
         notes = input("Please Add your notes: ")
         topics_dict[topic_name]["notes"].append(notes)
         print("Notes has been added successfully!")
+    else:
+        print("Topic not found")
+
+def update_status(topics_dict):
+    topic_name = input("Please enter the name of the topic: ")
+    if topic_name in topics_dict:
+        print("Update your status:")
+        print("Enter 1 for Learning")
+        print("Enter 2 for Revised")
+        print("Enter 3 for Mastered")
+        status_update = int(input("Please enter your choice: "))
+        if status_update == 1:
+            topics_dict[topic_name]["status"] = "Learning"
+        elif status_update == 2:
+            topics_dict[topic_name]["status"] = "Revised"
+        elif status_update == 3:
+            topics_dict[topic_name]["status"] = "Mastered"
+        else:
+            print("Invalid choice")
+    
     else:
         print("Topic not found")
 
@@ -71,8 +97,15 @@ while True:
     elif (choice == 4):
         print("Add Notes has been Selected")
         add_notes(topics)
-        # Implement add notes functionality here
     elif (choice == 5):
+        print("Updating Status")
+        update_status(topics)
+        if update_status(topics) == "Topic not found or Invalid choice":
+            print("Status update failed. Try again.")
+        else:
+            print("Status updated successfully!")
+        # Implement update status functionality here
+    elif (choice == 6):
         print("You have exited the Menu")
         break
     else:
