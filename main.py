@@ -62,10 +62,13 @@ def update_status(topics_dict):
         status_update = int(input("Please enter your choice: "))
         if status_update == 1:
             topics_dict[topic_name]["status"] = "Learning"
+            print("Status has been updated successfully!")
         elif status_update == 2:
             topics_dict[topic_name]["status"] = "Revised"
+            print("Status has been updated successfully!")
         elif status_update == 3:
             topics_dict[topic_name]["status"] = "Mastered"
+            print("Status has been updated successfully!")
         else:
             print("Invalid choice")
     
@@ -100,10 +103,6 @@ while True:
     elif (choice == 5):
         print("Updating Status")
         update_status(topics)
-        if update_status(topics) == "Topic not found or Invalid choice":
-            print("Status update failed. Try again.")
-        else:
-            print("Status updated successfully!")
         # Implement update status functionality here
     elif (choice == 6):
         print("You have exited the Menu")
