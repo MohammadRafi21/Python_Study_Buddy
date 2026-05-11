@@ -1,3 +1,4 @@
+import json
 def show_menu():
     print("welcome to to PythonStudyBuddy")
     print("1. Add Topic")
@@ -5,7 +6,8 @@ def show_menu():
     print("3. Search Topics")
     print("4. Add Notes")
     print("5. Update Status")
-    print("6. Exit")
+    print("6. Save Data")
+    print("7. Exit")
 
 def add_topic(topics_dict):
     topic_name = input("Enter the topic name: ")
@@ -104,7 +106,7 @@ while True:
         print("Updating Status")
         update_status(topics)
         # Implement update status functionality here
-    elif (choice == 6):
+    elif (choice == 7):
         print("You have exited the Menu")
         break
     else:
