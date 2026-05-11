@@ -1,4 +1,10 @@
 import json
+import logging
+
+
+
+
+
 def show_menu():
     print("welcome to to PythonStudyBuddy")
     print("1. Add Topic")
@@ -61,7 +67,11 @@ def update_status(topics_dict):
         print("Enter 1 for Learning")
         print("Enter 2 for Revised")
         print("Enter 3 for Mastered")
-        status_update = int(input("Please enter your choice: "))
+        try:
+            status_update = int(input("Please enter your choice: "))
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            return
         if status_update == 1:
             topics_dict[topic_name]["status"] = "Learning"
             print("Status has been updated successfully!")
@@ -104,9 +114,12 @@ while True:
 
     show_menu()
 
-    choice = int(input("Please Enter your choice in number: "))
-    print(f"You chose : {choice}")
-
+    try:
+        choice = int(input("Please Enter your choice in number: "))
+        print(f"You chose : {choice}")
+    except ValueError:
+        print("Invalid input. Please enter a integer number.")
+        continue
 
     if (choice == 1):
         print("Add Topic has been Selected")
