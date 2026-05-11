@@ -105,7 +105,9 @@ while True:
     elif (choice == 5):
         print("Updating Status")
         update_status(topics)
-        # Implement update status functionality here
+    elif (choice == 6):
+        print("Save Data has been Selected")
+        # Implement save data functionality here
     elif (choice == 7):
         print("You have exited the Menu")
         break
