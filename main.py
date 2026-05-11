@@ -77,9 +77,28 @@ def update_status(topics_dict):
     else:
         print("Topic not found")
 
+def save_data(topics_dict):
+    with open("study_data.json","w") as file:
+        json.dump(topics_dict,file,indent=4) 
+        # Dump is used to write the data to the file in json format jason.dump(data, file location)
+    print("Data has been saved successfully!")
+
+def load_data():
+    try:
+        with open("study_data.json","r") as file:
+            data = json.load(file)
+            return data
+    except FileNotFoundError: # If the json file does not exist, return an empty dictionary
+        print("No existing data found. Starting with an empty topic list.")
+        return {}
+    except json.JSONDecodeError: # If the json file is empty or has invalid format, return an empty dictionary
+        print("Existing data is invalid. Starting with an empty topic list.")
+        return {}
 
 
-topics = {}
+
+
+topics = load_data()
 
 while True:
 
@@ -107,7 +126,7 @@ while True:
         update_status(topics)
     elif (choice == 6):
         print("Save Data has been Selected")
-        # Implement save data functionality here
+        save_data(topics)
     elif (choice == 7):
         print("You have exited the Menu")
         break
