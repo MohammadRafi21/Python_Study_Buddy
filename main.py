@@ -111,7 +111,7 @@ def load_data():
             return data
     except FileNotFoundError: # If the json file does not exist, return an empty dictionary
         print("No existing data found. Starting with an empty topic list.")
-        logging.info("No existing data found. Starting with an empty topic list.")
+        logging.warning("No existing data found. Starting with an empty topic list.")
         return {}
     except json.JSONDecodeError: # If the json file is empty or has invalid format, return an empty dictionary
         print("Existing data is invalid. Starting with an empty topic list.")
@@ -131,7 +131,8 @@ while True:
         choice = int(input("Please Enter your choice in number: "))
         print(f"You chose : {choice}")
     except ValueError:
-        print("Invalid input. Please enter a integer number.")
+        print("Invalid input. Please enter an integer number.")
+        logging.warning("invalid menu input entered by user.")
         continue
 
     if (choice == 1):
