@@ -1,6 +1,11 @@
 import json
 import logging
 
+logging.basicConfig(
+    filename= "logs/running_log.log",
+    level=logging.INFO,
+    format= "%(asctime)s | %(levelname)s | %(message)s"
+)
 
 
 
@@ -25,6 +30,7 @@ def add_topic(topics_dict):
     }
     topics_dict[topic_name] = details
     # topics_dict.update({topic_name: description})
+    logging.info(f"Added topic: {topic_name}")
     print("Topic added successfully!")
 def list_topics(topics_dict):
     if not topics_dict:
@@ -56,6 +62,7 @@ def add_notes(topics_dict):
     if topic_name in topics_dict:
         notes = input("Please Add your notes: ")
         topics_dict[topic_name]["notes"].append(notes)
+        logging.info(f"Added note to topic '{topic_name}': {notes}")
         print("Notes has been added successfully!")
     else:
         print("Topic not found")
@@ -74,12 +81,15 @@ def update_status(topics_dict):
             return
         if status_update == 1:
             topics_dict[topic_name]["status"] = "Learning"
+            logging.info(f"Updated status for topic '{topic_name}': Learning")
             print("Status has been updated successfully!")
         elif status_update == 2:
             topics_dict[topic_name]["status"] = "Revised"
+            logging.info(f"Updated status for topic '{topic_name}': Revised")
             print("Status has been updated successfully!")
         elif status_update == 3:
             topics_dict[topic_name]["status"] = "Mastered"
+            logging.info(f"Updated status for topic '{topic_name}': Mastered")
             print("Status has been updated successfully!")
         else:
             print("Invalid choice")
@@ -91,6 +101,7 @@ def save_data(topics_dict):
     with open("study_data.json","w") as file:
         json.dump(topics_dict,file,indent=4) 
         # Dump is used to write the data to the file in json format jason.dump(data, file location)
+    logging.info("Data has been saved successfully!")
     print("Data has been saved successfully!")
 
 def load_data():
@@ -100,9 +111,11 @@ def load_data():
             return data
     except FileNotFoundError: # If the json file does not exist, return an empty dictionary
         print("No existing data found. Starting with an empty topic list.")
+        logging.info("No existing data found. Starting with an empty topic list.")
         return {}
     except json.JSONDecodeError: # If the json file is empty or has invalid format, return an empty dictionary
         print("Existing data is invalid. Starting with an empty topic list.")
+        logging.warning("Existing data is invalid. Starting with an empty topic list.")
         return {}
 
 
