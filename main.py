@@ -17,8 +17,9 @@ def show_menu():
     print("3. Search Topics")
     print("4. Add Notes")
     print("5. Update Status")
-    print("6. Save Data")
-    print("7. Exit")
+    print("6. Delete Topic")
+    print("7. Save Data")
+    print("8. Exit")
 
 def add_topic(topics_dict):
     topic_name = input("Enter the topic name: ")
@@ -70,30 +71,41 @@ def add_notes(topics_dict):
 def update_status(topics_dict):
     topic_name = input("Please enter the name of the topic: ")
     if topic_name in topics_dict:
+        status_dict = {
+            1: "Learning",
+            2: "Revised",
+            3: "Mastered",
+            4: "Need to Practice"
+        }
         print("Update your status:")
         print("Enter 1 for Learning")
         print("Enter 2 for Revised")
         print("Enter 3 for Mastered")
+        print("Enter 4 for Need to Practice")
         try:
             status_update = int(input("Please enter your choice: "))
         except ValueError:
             print("Invalid input. Please enter a number.")
             return
-        if status_update == 1:
-            topics_dict[topic_name]["status"] = "Learning"
-            logging.info(f"Updated status for topic '{topic_name}': Learning")
-            print("Status has been updated successfully!")
-        elif status_update == 2:
-            topics_dict[topic_name]["status"] = "Revised"
-            logging.info(f"Updated status for topic '{topic_name}': Revised")
-            print("Status has been updated successfully!")
-        elif status_update == 3:
-            topics_dict[topic_name]["status"] = "Mastered"
-            logging.info(f"Updated status for topic '{topic_name}': Mastered")
+        if status_update in status_dict:
+            topics_dict[topic_name]["status"] = status_dict[status_update]
+            logging.info(f"Updated status for topic '{topic_name}': {status_dict[status_update]}")
             print("Status has been updated successfully!")
         else:
             print("Invalid choice")
     
+    else:
+        print("Topic not found")
+def delete_topic(topics_dict):
+    topic_name = input("Please enter the name of the topic: ")
+    # if topic_name in topics_dict:
+    #     del topics_dict[topic_name]
+    #     logging.info(f"Deleted topic: {topic_name}")
+    #     print("Topic has been deleted successfully!")
+    if topic_name in topics_dict:
+        topics_dict.pop(topic_name)
+        logging.info(f"Deleted topic: {topic_name}")
+        print("Topic has been deleted successfully!")
     else:
         print("Topic not found")
 
@@ -152,9 +164,13 @@ while True:
         print("Updating Status")
         update_status(topics)
     elif (choice == 6):
+        print("Delete Topic has been Selected")
+        delete_topic(topics)
+        # Implement delete topic functionality here
+    elif (choice == 7):
         print("Save Data has been Selected")
         save_data(topics)
-    elif (choice == 7):
+    elif (choice == 8):
         print("You have exited the Menu")
         break
     else:
