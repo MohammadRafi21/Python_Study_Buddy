@@ -13,5 +13,20 @@
         "notes": [
             "conditional help if this else that"
         ]
+    },
+    "Data Structure": {
+        "description": "list, set, dictionary & tuples",
+        "status": "Learning",
+        "notes": [
+            "we can delete item form the lists",
+            "we cannot delete form the tuples"
+        ]
+    },
+    "data science": {
+        "description": "description of working of data",
+        "status": "Mastered",
+        "notes": [
+            "ananlysing the data and predicting its behaviour is data science"
+        ]
     }
 }
