@@ -1,0 +1,24 @@
+{
+    "loops": {
+        "description": "for and while loops",
+        "status": "Learning",
+        "notes": [
+            "for loops are sequeseal",
+            "while loops are iterative"
+        ]
+    },
+    "conditionals": {
+        "description": "if else condition",
+        "status": "Learning",
+        "notes": [
+            "conditional help if this else that"
+        ]
+    },
+    "data structure": {
+        "description": "",
+        "status": "Learning",
+        "notes": [
+            "helps to store the data"
+        ]
+    }
+}
