@@ -5,11 +5,6 @@ from src.storage import save_data, load_data
 from src.operation import add_topic, list_topics, search_topic, add_notes, update_status, delete_topic
 
 
-
-
-
-
-
 def show_menu():
     print("welcome to to PythonStudyBuddy")
     print("1. Add Topic")
