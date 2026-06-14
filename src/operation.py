@@ -36,6 +36,8 @@ def list_topics(topics_dict):
 def search_topic(topics_dict):
     search_key = input("Please enter the name of the topic: ")
     if search_key in topics_dict:
+        # topic = topics_dict[search_key]
+        # topic.display()
         topics_dict[search_key].display()
     # if search_key in topics_dict:
     #     details = topics_dict[search_key]
@@ -53,8 +55,11 @@ def search_topic(topics_dict):
 def add_notes(topics_dict):
     topic_name = input("Please enter the name of the topic: ")
     if topic_name in topics_dict:
+        topic = topics_dict[topic_name]
         notes = input("Please Add your notes: ")
-        topics_dict[topic_name]["notes"].append(notes)
+        topic.add_note(notes)
+        # notes = input("Please Add your notes: ")
+        # topics_dict[topic_name]["notes"].append(notes)
         logging.info(f"Added note to topic '{topic_name}': {notes}")
         print("Notes has been added successfully!")
     else:
@@ -80,7 +85,9 @@ def update_status(topics_dict):
             print("Invalid input. Please enter a number.")
             return
         if status_update in status_dict:
-            topics_dict[topic_name]["status"] = status_dict[status_update]
+            topic = topics_dict[topic_name]
+            topic.update_status(status_dict[status_update])
+            #topics_dict[topic_name]["status"] = status_dict[status_update]
             logging.info(f"Updated status for topic '{topic_name}': {status_dict[status_update]}")
             print("Status has been updated successfully!")
         else:
