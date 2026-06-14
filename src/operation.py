@@ -1,14 +1,18 @@
+from src.models import Topic
 import logging
+
+
 
 def add_topic(topics_dict):
     topic_name = input("Enter the topic name: ")
     description = input("Enter the topic description: ")
-    details =  {
-        "description": description,
-        "status": "Learning",
-        "notes": []
-    }
-    topics_dict[topic_name] = details
+    topics_dict[topic_name] = Topic(topic_name, description)
+    # details =  {
+    #     "description": description,
+    #     "status": "Learning",
+    #     "notes": []
+    # }
+    # topics_dict[topic_name] = details
     # topics_dict.update({topic_name: description})
     logging.info(f"Added topic: {topic_name}")
     print("Topic added successfully!")
@@ -16,24 +20,33 @@ def list_topics(topics_dict):
     if not topics_dict:
         print("No topics available.")
     else:
-        for topic, details in topics_dict.items():
-            print(f"Topic: {topic}")
-            print(f"Description: {details['description']}")
-            print(f"Status: {details['status']}")
+        for topic in topics_dict.values():
+            topic.display()
             print()
+
+    # if not topics_dict:
+    #     print("No topics available.")
+    # else:
+    #     for topic, details in topics_dict.items():
+    #         print(f"Topic: {topic}")
+    #         print(f"Description: {details['description']}")
+    #         print(f"Status: {details['status']}")
+    #         print()
 
 def search_topic(topics_dict):
     search_key = input("Please enter the name of the topic: ")
     if search_key in topics_dict:
-        details = topics_dict[search_key]
-        print(f"Topic: {search_key}")
-        print(f"Description: {details['description']}")
-        print(f"Status: {details['status']}")
-        if not details['notes']:
-            print("No notes available for this topic.")
-        else:
-            for i in range(len(details['notes'])):
-                print(f"Note {i+1}: {details['notes'][i]}")
+        topics_dict[search_key].display()
+    # if search_key in topics_dict:
+    #     details = topics_dict[search_key]
+    #     print(f"Topic: {search_key}")
+    #     print(f"Description: {details.description}")
+    #     print(f"Status: {details.status}")
+    #     if not details.notes:
+    #         print("No notes available for this topic.")
+    #     else:
+    #         for i in range(len(details.notes)):
+    #             print(f"Note {i+1}: {details.notes[i]}")
     else:
         print("Topic not found")
 
