@@ -1,9 +1,13 @@
+from src.models import Topic
 import json
 import logging
 
 def save_data(topics_dict):
     with open("study_data.json","w") as file:
-        json.dump(topics_dict,file,indent=4) 
+        data_to_save = {}
+        for topic_name, topic_object in topics_dict.items():
+            data_to_save[topic_name] = topic_object.to_dict()
+        json.dump(data_to_save, file, indent=4)
         # Dump is used to write the data to the file in json format jason.dump(data, file location)
     logging.info("Data has been saved successfully!")
     print("Data has been saved successfully!")
