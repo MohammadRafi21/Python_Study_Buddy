@@ -15,8 +15,12 @@ def save_data(topics_dict):
 def load_data():
     try:
         with open("study_data.json","r") as file:
+            loaded_topics = {}
             data = json.load(file)
-            return data
+            for topic_name, topic_data in data.items():
+                loaded_topics[topic_name] = Topic.from_dict(topic_name, topic_data)
+            # data = json.load(file)
+            return loaded_topics
     except FileNotFoundError: # If the json file does not exist, return an empty dictionary
         print("No existing data found. Starting with an empty topic list.")
         logging.warning("No existing data found. Starting with an empty topic list.")
